@@ -23,7 +23,7 @@ stored<-c()
 for(i in 1:length(unique(activity$date))){
   stored[i]<-sum(activity$steps[which(activity$date==unique(activity$date)[i])])
 }
-hist(na.omit(stored),breaks=15,xlab="Total Steps",main="Histogram of total steps")
+hist(na.omit(stored),breaks=15,xlab="Total Steps",main="Histogram of total steps (including NAs)")
 mean(stored,na.rm=TRUE)
 median(stored,na.rm=TRUE)
 ```
@@ -74,7 +74,7 @@ stored2<-c()
 for(i in 1:length(unique(filled$date))){
   stored2[i]<-sum(filled$steps[which(filled$date==unique(filled$date)[i])])
 }
-hist(na.omit(stored2),breaks=15,xlab="Total Steps",main="Histogram of total steps")
+hist(na.omit(stored2),breaks=15,xlab="Total Steps",main="Histogram of total steps (With Imputed Values)")
 mean(stored2,na.rm=TRUE)
 median(stored2,na.rm=TRUE)
 ```
@@ -85,7 +85,7 @@ The new imputed values seemed to boost the other bins near the mean of the histo
 
 Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
-```{r}
+```{r,warning=FALSE}
 filled$day<-weekdays(as.Date(filled$date))
 for(i in 1:length(filled$day)){
   if(filled$day[i]==c("Monday","Tuesday","Wednesday","Thursday","Friday")){
